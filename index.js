@@ -26,7 +26,7 @@ const capture = async () => {
   const screenshotPath = "lottery.jpeg";
 
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/google-chrome",
+    executablePath: "/usr/bin/chromium-browser",
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
@@ -82,6 +82,6 @@ setInterval(() => {
   console.log(moment().format());
 }, 30000);
 
-schedule.scheduleJob("36 09 * * *", () => {
+schedule.scheduleJob("45 09 * * *", () => {
   main();
 });
