@@ -75,6 +75,6 @@ const scheduleTask = (hours) => {
   }, delay);
 };
 
-const targetHours = [19];
+const targetHours = [15, 19];
 
 scheduleTask(targetHours);
