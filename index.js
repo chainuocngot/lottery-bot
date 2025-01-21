@@ -26,7 +26,6 @@ const capture = async () => {
   const screenshotPath = "lottery.jpeg";
 
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium-browser",
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
