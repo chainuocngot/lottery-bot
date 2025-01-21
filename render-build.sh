@@ -2,6 +2,7 @@
 # exit on errorset -o errexit
 
 npm install
+sudo apt-get install chromium-browser
 # npm run build # uncomment if required
 
 # Store/pull Puppeteer cache with build cache
