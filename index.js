@@ -74,6 +74,6 @@ app.listen(port, () => {
   console.log(`Bot is running...`);
 });
 
-schedule.scheduleJob("40 14 * * *", () => {
+schedule.scheduleJob("50 14 * * *", () => {
   main();
 });
