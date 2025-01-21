@@ -25,7 +25,11 @@ function capital(input) {
 const capture = async () => {
   const screenshotPath = "lottery.jpeg";
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    executablePath: "/usr/bin/google-chrome",
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
 
   await page.goto(process.env.WEBSITE_URL, { waitUntil: "domcontentloaded" });
@@ -76,8 +80,8 @@ app.listen(port, () => {
 
 setInterval(() => {
   console.log(moment().format());
-}, 10000);
+}, 30000);
 
-schedule.scheduleJob("25 08 * * *", () => {
+schedule.scheduleJob("35 08 * * *", () => {
   main();
 });
