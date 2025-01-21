@@ -74,6 +74,10 @@ app.listen(port, () => {
   console.log(`Bot is running...`);
 });
 
+setInterval(() => {
+  console.log(moment().format());
+}, 10000);
+
 schedule.scheduleJob("10 16 * * *", () => {
   main();
 });
