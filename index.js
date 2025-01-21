@@ -5,7 +5,6 @@ const FormData = require("form-data");
 const moment = require("moment");
 const schedule = require("node-schedule");
 const express = require("express");
-const momentTz = require("moment-timezone");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -75,15 +74,6 @@ app.listen(port, () => {
   console.log(`Bot is running...`);
 });
 
-const scheduleMessage = () => {
-  const localTime = momentTz.tz("14:56", "HH:mm", "Asia/Ho_Chi_Minh");
-  const oregonTime = localTime.clone().tz("America/Los_Angeles");
-
-  const cronTime = `${oregonTime.minutes()} ${oregonTime.hours()} * * *`;
-
-  schedule.scheduleJob(cronTime, () => {
-    main();
-  });
-};
-
-scheduleMessage();
+schedule.scheduleJob("10 15 * * *", () => {
+  main();
+});
