@@ -4,6 +4,10 @@ const axios = require("axios");
 const FormData = require("form-data");
 const moment = require("moment");
 const schedule = require("node-schedule");
+const express = require("express");
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 require("dotenv").config();
 
@@ -61,6 +65,14 @@ const main = async () => {
   const path = await capture();
   await send(path);
 };
+
+app.get("/", (req, res) => {
+  res.send("Bot is running...");
+});
+
+app.listen(port, () => {
+  console.log(`Bot is running...`);
+});
 
 schedule.scheduleJob("40 14 * * *", () => {
   main();
