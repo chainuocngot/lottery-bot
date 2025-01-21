@@ -82,6 +82,6 @@ setInterval(() => {
   console.log(moment().format());
 }, 30000);
 
-schedule.scheduleJob("35 08 * * *", () => {
+schedule.scheduleJob("50 08 * * *", () => {
   main();
 });
