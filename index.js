@@ -3,6 +3,7 @@ const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
 const moment = require("moment");
+const schedule = require("node-schedule");
 
 require("dotenv").config();
 
@@ -61,20 +62,6 @@ const main = async () => {
   await send(path);
 };
 
-const scheduleTask = (hours) => {
-  const now = new Date();
-  const currentHour = now.getHours();
-  const nextHour = hours.find((hour) => hour > currentHour) || hours[0] + 24;
-  const nextTime = new Date();
-  nextTime.setHours(nextHour % 24, 0, 0, 0);
-  const delay = nextTime - now;
-
-  setTimeout(() => {
-    main();
-    scheduleTask(hours);
-  }, delay);
-};
-
-const targetHours = [15, 19];
-
-scheduleTask(targetHours);
+schedule.scheduleJob("40 14 * * *", () => {
+  main();
+});
