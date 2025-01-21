@@ -2,14 +2,27 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
+const moment = require("moment");
 
 require("dotenv").config();
 
+function capital(input) {
+  if (!input || typeof input !== "string") {
+    return "";
+  }
+
+  return input
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
 const capture = async () => {
-  const screenshotPath = "example.jpeg";
+  const screenshotPath = "lottery.jpeg";
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+
   await page.goto(process.env.WEBSITE_URL, { waitUntil: "domcontentloaded" });
   await page.type('input[type="password"]', "71790305");
   await page.click('input[type="password"] ~ button');
@@ -29,7 +42,12 @@ const capture = async () => {
 const send = async (imagePath) => {
   const form = new FormData();
   form.append("file", fs.createReadStream(imagePath));
-  form.append("content", "Kết quả xổ số mới nhất:");
+  form.append(
+    "content",
+    `Kết quả xổ số ngày ${capital(
+      moment().locale("vi").format("dddd, DD/MM/YYYY"),
+    )}:`,
+  );
 
   await axios.post(process.env.DISCORD_WEBHOOK_URI, form, {
     headers: {
@@ -57,6 +75,6 @@ const scheduleTask = (hours) => {
   }, delay);
 };
 
-const targetHours = [14, 15, 17];
+const targetHours = [19];
 
 scheduleTask(targetHours);
