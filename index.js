@@ -38,7 +38,7 @@ const capture = async () => {
   await page.waitForSelector(".top");
   await page.addStyleTag({ path: "./custom.css" });
   const section = await page.waitForSelector("body");
-  await new Promise((r) => setTimeout(r, 20000));
+  await new Promise((r) => setTimeout(r, 10000));
 
   await section.screenshot({ path: screenshotPath, quality: 100 });
 
@@ -77,6 +77,6 @@ app.listen(port, () => {
   console.log(`Bot is running...`);
 });
 
-schedule.scheduleJob("00 02 * * *", () => {
+schedule.scheduleJob("00 12 * * *", () => {
   main();
 });
