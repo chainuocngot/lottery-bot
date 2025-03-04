@@ -2,7 +2,7 @@ name: Run Bot at 6:50 AM Daily
 
 on:
   schedule:
-    - cron: "20 03 * * *" # Chạy vào 6:50 AM hàng ngày (UTC)
+    - cron: "30 03 * * *" # Chạy vào 6:50 AM hàng ngày (UTC)
   workflow_dispatch: # Cho phép chạy thủ công nếu cần
 
 jobs:
