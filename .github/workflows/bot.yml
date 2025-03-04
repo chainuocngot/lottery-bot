@@ -1,0 +1,24 @@
+name: Run Bot at 6:50 AM Daily
+
+on:
+  schedule:
+    - cron: "10 03 * * *" # Chạy vào 6:50 AM hàng ngày (UTC)
+  workflow_dispatch: # Cho phép chạy thủ công nếu cần
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 # Lấy code từ repo của bạn
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # Chọn phiên bản Node.js
+
+      - name: Install dependencies
+        run: npm install # Cài đặt thư viện nếu cần
+
+      - name: Run Bot Script
+        run: node index.js # Chạy script bot của bạn
