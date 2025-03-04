@@ -3,11 +3,6 @@ const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
 const moment = require("moment");
-const schedule = require("node-schedule");
-const express = require("express");
-
-const app = express();
-const port = process.env.PORT || 3000;
 
 require("dotenv").config();
 
@@ -38,7 +33,7 @@ const capture = async () => {
   await page.waitForSelector(".top");
   await page.addStyleTag({ path: "./custom.css" });
   const section = await page.waitForSelector("body");
-  await new Promise((r) => setTimeout(r, 30000));
+  await new Promise((r) => setTimeout(r, 10000));
 
   await section.screenshot({ path: screenshotPath, quality: 100 });
 
@@ -69,14 +64,4 @@ const main = async () => {
   await send(path);
 };
 
-app.get("/", (req, res) => {
-  res.send("Bot is running...");
-});
-
-app.listen(port, () => {
-  console.log(`Bot is running...`);
-});
-
-schedule.scheduleJob("50 11 * * *", () => {
-  main();
-});
+main();
