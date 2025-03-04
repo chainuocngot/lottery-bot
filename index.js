@@ -26,7 +26,9 @@ const capture = async () => {
   });
   const page = await browser.newPage();
 
-  await page.goto(process.env.WEBSITE_URL, { waitUntil: "domcontentloaded" });
+  await page.goto("https://lottery-web-v2.vercel.app/", {
+    waitUntil: "domcontentloaded",
+  });
   await page.type('input[type="password"]', "71790305");
   await page.click('input[type="password"] ~ button');
 
@@ -52,11 +54,15 @@ const send = async (imagePath) => {
     )}:`,
   );
 
-  await axios.post(process.env.DISCORD_WEBHOOK_URI, form, {
-    headers: {
-      ...form.getHeaders(),
+  await axios.post(
+    "https://discord.com/api/webhooks/1331125622323417108/DwAkCF2W2TfUZ7zoVFzA6bK1QP-W42hdnYAgRIJ_9H8x_KAU5LyYWQg9hFFnxitRV_9y",
+    form,
+    {
+      headers: {
+        ...form.getHeaders(),
+      },
     },
-  });
+  );
 };
 
 const main = async () => {
