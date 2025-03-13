@@ -66,8 +66,19 @@ const send = async (imagePath) => {
 };
 
 const main = async () => {
-  const path = await capture();
-  await send(path);
+  let attempts = 0;
+  const maxAttempts = 3;
+
+  while (attempts < maxAttempts) {
+    try {
+      const path = await capture();
+      await send(path);
+      return;
+    } catch (error) {
+      attempts++;
+      console.error(`Failed!`, error);
+    }
+  }
 };
 
 main();
