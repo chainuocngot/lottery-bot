@@ -23,6 +23,3 @@ jobs:
 
       - name: Run the script
         run: node index.js
-
-      - name: Keepalive Workflow
-        uses: gautamkrishnar/keepalive-workflow@v1
