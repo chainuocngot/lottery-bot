@@ -55,7 +55,7 @@ const send = async (imagePath) => {
   );
 
   await axios.post(
-    "https://discord.com/api/webhooks/1331125622323417108/DwAkCF2W2TfUZ7zoVFzA6bK1QP-W42hdnYAgRIJ_9H8x_KAU5LyYWQg9hFFnxitRV_9y",
+    process.env.DISCORD_WEBHOOK_URL,
     form,
     {
       headers: {
